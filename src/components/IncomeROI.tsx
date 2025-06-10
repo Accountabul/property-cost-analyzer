@@ -16,12 +16,12 @@ const IncomeROI: React.FC<IncomeROIProps> = ({
   allInCost,
   totalMonthlyExpenses,
 }) => {
-  const [numberOfUnits, setNumberOfUnits] = useState(1);
-  const [rentPerUnit, setRentPerUnit] = useState(2500);
-  const [pets, setPets] = useState(50);
-  const [parking, setParking] = useState(100);
-  const [laundry, setLaundry] = useState(30);
-  const [storage, setStorage] = useState(25);
+  const [numberOfUnits, setNumberOfUnits] = useState(0);
+  const [rentPerUnit, setRentPerUnit] = useState(0);
+  const [pets, setPets] = useState(0);
+  const [parking, setParking] = useState(0);
+  const [laundry, setLaundry] = useState(0);
+  const [storage, setStorage] = useState(0);
 
   const totalMonthlyRent = numberOfUnits * rentPerUnit;
   const totalAdditionalIncome = pets + parking + laundry + storage;
