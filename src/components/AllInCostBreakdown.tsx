@@ -17,13 +17,13 @@ const AllInCostBreakdown: React.FC<AllInCostBreakdownProps> = ({
   onPropertyPriceChange,
   onDownPaymentChange,
 }) => {
-  const [purchasePrice, setPurchasePrice] = useState(500000);
-  const [downPaymentPercent, setDownPaymentPercent] = useState(20);
-  const [downPaymentDollar, setDownPaymentDollar] = useState(100000);
-  const [appraisalFee, setAppraisalFee] = useState(500);
-  const [inspectionFee, setInspectionFee] = useState(500);
+  const [purchasePrice, setPurchasePrice] = useState(0);
+  const [downPaymentPercent, setDownPaymentPercent] = useState(0);
+  const [downPaymentDollar, setDownPaymentDollar] = useState(0);
+  const [appraisalFee, setAppraisalFee] = useState(0);
+  const [inspectionFee, setInspectionFee] = useState(0);
   const [closingCostsPercent, setClosingCostsPercent] = useState(5);
-  const [closingCostsDollar, setClosingCostsDollar] = useState(25000);
+  const [closingCostsDollar, setClosingCostsDollar] = useState(0);
 
   useEffect(() => {
     const calculatedDownPayment = (purchasePrice * downPaymentPercent) / 100;
