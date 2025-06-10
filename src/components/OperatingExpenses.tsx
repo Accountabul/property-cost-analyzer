@@ -17,16 +17,16 @@ const OperatingExpenses: React.FC<OperatingExpensesProps> = ({
   monthlyMortgage,
   onMonthlyExpensesChange,
 }) => {
-  const [repairs, setRepairs] = useState(3000);
-  const [utilities, setUtilities] = useState(1200);
-  const [homeWarranty, setHomeWarranty] = useState(600);
-  const [trashRemoval, setTrashRemoval] = useState(300);
-  const [landscaping, setLandscaping] = useState(800);
+  const [repairs, setRepairs] = useState($0);
+  const [utilities, setUtilities] = useState($0);
+  const [homeWarranty, setHomeWarranty] = useState($0);
+  const [trashRemoval, setTrashRemoval] = useState($0);
+  const [landscaping, setLandscaping] = useState($0);
   const [propertyManagement, setPropertyManagement] = useState(0);
-  const [propertyTaxes, setPropertyTaxes] = useState(6000);
-  const [homeownersInsurance, setHomeownersInsurance] = useState(1200);
-  const [capEx, setCapEx] = useState(2000);
-  const [monthlyRent, setMonthlyRent] = useState(0);
+  const [propertyTaxes, setPropertyTaxes] = useState($0);
+  const [homeownersInsurance, setHomeownersInsurance] = useState($0);
+  const [capEx, setCapEx] = useState($0);
+  const [monthlyRent, setMonthlyRent] = useState($0);
 
   useEffect(() => {
     if (monthlyRent > 0) {
@@ -101,7 +101,7 @@ const OperatingExpenses: React.FC<OperatingExpensesProps> = ({
         <CardHeader className="bg-gradient-to-r from-green-600 to-teal-600 text-white rounded-t-lg">
           <CardTitle className="flex items-center gap-2">
             <CircleDollarSign className="w-6 h-6" />
-            Section 3 – Operating Expenses Summary
+            Section 4 – Operating Expenses Summary
           </CardTitle>
         </CardHeader>
         <CardContent className="p-6">
