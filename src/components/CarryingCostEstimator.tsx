@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -9,11 +8,13 @@ import { CircleDollarSign } from 'lucide-react';
 interface CarryingCostEstimatorProps {
   defaultLoanAmount: number;
   onCarryingCostChange: (cost: number) => void;
+  onReportDataChange: (data: any) => void;
 }
 
 const CarryingCostEstimator: React.FC<CarryingCostEstimatorProps> = ({
   defaultLoanAmount,
   onCarryingCostChange,
+  onReportDataChange,
 }) => {
   const [loanAmount, setLoanAmount] = useState(defaultLoanAmount);
   const [introAPR, setIntroAPR] = useState(0);
@@ -31,7 +32,16 @@ const CarryingCostEstimator: React.FC<CarryingCostEstimatorProps> = ({
 
   useEffect(() => {
     onCarryingCostChange(totalCarryingCost);
-  }, [totalCarryingCost, onCarryingCostChange]);
+    
+    // Update report data
+    onReportDataChange({
+      loanAmount,
+      introAPR,
+      introPeriod,
+      postIntroAPR,
+      minPaymentPercent,
+    });
+  }, [totalCarryingCost, loanAmount, introAPR, introPeriod, postIntroAPR, minPaymentPercent, onCarryingCostChange, onReportDataChange]);
 
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat('en-US', {

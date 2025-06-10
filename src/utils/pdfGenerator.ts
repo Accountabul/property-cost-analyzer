@@ -1,4 +1,3 @@
-
 import jsPDF from 'jspdf';
 
 interface ReportData {
@@ -38,7 +37,6 @@ interface ReportData {
   interestRate: number;
   loanTermYears: number;
   startDate: string;
-  loanAmount: number;
   monthlyPayment: number;
   totalInterest: number;
   totalRepayment: number;

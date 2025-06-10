@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -10,23 +9,25 @@ interface OperatingExpensesProps {
   carryingCost: number;
   monthlyMortgage: number;
   onMonthlyExpensesChange: (expenses: number) => void;
+  onReportDataChange: (data: any) => void;
 }
 
 const OperatingExpenses: React.FC<OperatingExpensesProps> = ({
   carryingCost,
   monthlyMortgage,
   onMonthlyExpensesChange,
+  onReportDataChange,
 }) => {
-  const [repairs, setRepairs] = useState($0);
-  const [utilities, setUtilities] = useState($0);
-  const [homeWarranty, setHomeWarranty] = useState($0);
-  const [trashRemoval, setTrashRemoval] = useState($0);
-  const [landscaping, setLandscaping] = useState($0);
+  const [repairs, setRepairs] = useState(0);
+  const [utilities, setUtilities] = useState(0);
+  const [homeWarranty, setHomeWarranty] = useState(0);
+  const [trashRemoval, setTrashRemoval] = useState(0);
+  const [landscaping, setLandscaping] = useState(0);
   const [propertyManagement, setPropertyManagement] = useState(0);
-  const [propertyTaxes, setPropertyTaxes] = useState($0);
-  const [homeownersInsurance, setHomeownersInsurance] = useState($0);
-  const [capEx, setCapEx] = useState($0);
-  const [monthlyRent, setMonthlyRent] = useState($0);
+  const [propertyTaxes, setPropertyTaxes] = useState(0);
+  const [homeownersInsurance, setHomeownersInsurance] = useState(0);
+  const [capEx, setCapEx] = useState(0);
+  const [monthlyRent, setMonthlyRent] = useState(0);
 
   useEffect(() => {
     if (monthlyRent > 0) {
@@ -42,7 +43,22 @@ const OperatingExpenses: React.FC<OperatingExpensesProps> = ({
 
   useEffect(() => {
     onMonthlyExpensesChange(monthlyRawExpenses);
-  }, [monthlyRawExpenses, onMonthlyExpensesChange]);
+    
+    // Update report data
+    onReportDataChange({
+      repairs,
+      utilities,
+      homeWarranty,
+      trashRemoval,
+      landscaping,
+      propertyManagement,
+      propertyTaxes,
+      homeownersInsurance,
+      capEx,
+      totalYearlyExpenses,
+      monthlyRawExpenses,
+    });
+  }, [monthlyRawExpenses, repairs, utilities, homeWarranty, trashRemoval, landscaping, propertyManagement, propertyTaxes, homeownersInsurance, capEx, totalYearlyExpenses, onMonthlyExpensesChange, onReportDataChange]);
 
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat('en-US', {
