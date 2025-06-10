@@ -19,8 +19,8 @@ const MortgageBreakdown: React.FC<MortgageBreakdownProps> = ({
 }) => {
   const [propertyPrice, setPropertyPrice] = useState(defaultPropertyPrice);
   const [downPayment, setDownPayment] = useState(defaultDownPayment);
-  const [interestRate, setInterestRate] = useState(7.5);
-  const [loanTermYears, setLoanTermYears] = useState(30);
+  const [interestRate, setInterestRate] = useState(0.00);
+  const [loanTermYears, setLoanTermYears] = useState(0);
   const [startDate, setStartDate] = useState(new Date().toISOString().split('T')[0]);
 
   useEffect(() => {
