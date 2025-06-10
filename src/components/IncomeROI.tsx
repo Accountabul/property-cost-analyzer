@@ -1,20 +1,23 @@
-
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { Badge } from '@/components/ui/badge';
-import { CircleDollarSign } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { CircleDollarSign, FileDown } from 'lucide-react';
+import { generatePDFReport } from '@/utils/pdfGenerator';
 
 interface IncomeROIProps {
   allInCost: number;
   totalMonthlyExpenses: number;
+  reportData?: any; // We'll pass all the data needed for the PDF
 }
 
 const IncomeROI: React.FC<IncomeROIProps> = ({
   allInCost,
   totalMonthlyExpenses,
+  reportData,
 }) => {
   const [numberOfUnits, setNumberOfUnits] = useState(0);
   const [rentPerUnit, setRentPerUnit] = useState(0);
@@ -53,6 +56,26 @@ const IncomeROI: React.FC<IncomeROIProps> = ({
     if (roi >= 10) return 'Good';
     if (roi >= 5) return 'Fair';
     return 'Poor';
+  };
+
+  const handleGenerateReport = () => {
+    if (reportData) {
+      generatePDFReport({
+        ...reportData,
+        numberOfUnits,
+        rentPerUnit,
+        pets,
+        parking,
+        laundry,
+        storage,
+        totalMonthlyIncome,
+        totalYearlyIncome,
+        totalMonthlyExpenses,
+        monthlyNOI,
+        yearlyNOI,
+        roi,
+      });
+    }
   };
 
   return (
@@ -267,6 +290,29 @@ const IncomeROI: React.FC<IncomeROIProps> = ({
                 <div>÷ All-In Cost: {formatCurrency(allInCost)}</div>
                 <div>× 100 = <span className="font-bold">{roi.toFixed(2)}%</span></div>
               </div>
+            </div>
+          </div>
+
+          {/* PDF Generation Button */}
+          <div className="mt-8 p-6 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg border-2 border-blue-200">
+            <div className="text-center">
+              <h3 className="text-lg font-semibold text-blue-800 mb-4">Generate Deal Report</h3>
+              <p className="text-sm text-gray-600 mb-4">
+                Export a comprehensive PDF summary of your real estate investment analysis
+              </p>
+              <Button 
+                onClick={handleGenerateReport}
+                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2"
+                disabled={!reportData}
+              >
+                <FileDown className="w-4 h-4 mr-2" />
+                📄 Generate Report (PDF)
+              </Button>
+              {!reportData && (
+                <p className="text-xs text-red-500 mt-2">
+                  Complete all sections to generate report
+                </p>
+              )}
             </div>
           </div>
         </CardContent>

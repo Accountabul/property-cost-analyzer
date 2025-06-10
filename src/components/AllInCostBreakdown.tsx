@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -10,12 +9,14 @@ interface AllInCostBreakdownProps {
   onAllInCostChange: (cost: number) => void;
   onPropertyPriceChange: (price: number) => void;
   onDownPaymentChange: (payment: number) => void;
+  onReportDataChange?: (data: any) => void;
 }
 
 const AllInCostBreakdown: React.FC<AllInCostBreakdownProps> = ({
   onAllInCostChange,
   onPropertyPriceChange,
   onDownPaymentChange,
+  onReportDataChange,
 }) => {
   const [purchasePrice, setPurchasePrice] = useState(0);
   const [downPaymentPercent, setDownPaymentPercent] = useState(0);
@@ -46,6 +47,19 @@ const AllInCostBreakdown: React.FC<AllInCostBreakdownProps> = ({
   useEffect(() => {
     onPropertyPriceChange(purchasePrice);
   }, [purchasePrice, onPropertyPriceChange]);
+
+  useEffect(() => {
+    if (onReportDataChange) {
+      onReportDataChange({
+        purchasePrice,
+        downPayment: downPaymentDollar,
+        downPaymentPercent,
+        appraisalFee,
+        inspectionFee,
+        closingCosts: closingCostsDollar,
+      });
+    }
+  }, [purchasePrice, downPaymentDollar, downPaymentPercent, appraisalFee, inspectionFee, closingCostsDollar, onReportDataChange]);
 
   const allInCost = downPaymentDollar + appraisalFee + inspectionFee + closingCostsDollar;
 
