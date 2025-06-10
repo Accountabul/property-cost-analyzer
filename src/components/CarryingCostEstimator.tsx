@@ -17,9 +17,9 @@ const CarryingCostEstimator: React.FC<CarryingCostEstimatorProps> = ({
 }) => {
   const [loanAmount, setLoanAmount] = useState(defaultLoanAmount);
   const [introAPR, setIntroAPR] = useState(0);
-  const [introPeriod, setIntroPeriod] = useState(18);
-  const [postIntroAPR, setPostIntroAPR] = useState(24);
-  const [minPaymentPercent, setMinPaymentPercent] = useState(1);
+  const [introPeriod, setIntroPeriod] = useState(0);
+  const [postIntroAPR, setPostIntroAPR] = useState(0);
+  const [minPaymentPercent, setMinPaymentPercent] = useState(0);
 
   useEffect(() => {
     setLoanAmount(defaultLoanAmount);
@@ -55,7 +55,7 @@ const CarryingCostEstimator: React.FC<CarryingCostEstimatorProps> = ({
             {/* Loan Amount */}
             <div className="space-y-2">
               <div className="flex items-center gap-2">
-                <Label htmlFor="loanAmount">Loan/Advance Amount</Label>
+                <Label htmlFor="loanAmount">All in Cost/ Loan Amount </Label>
                 <Tooltip>
                   <TooltipTrigger>ℹ️</TooltipTrigger>
                   <TooltipContent>
@@ -75,7 +75,7 @@ const CarryingCostEstimator: React.FC<CarryingCostEstimatorProps> = ({
             {/* Intro APR */}
             <div className="space-y-2">
               <div className="flex items-center gap-2">
-                <Label htmlFor="introAPR">Intro APR %</Label>
+                <Label htmlFor="introAPR"> APR %</Label>
                 <Tooltip>
                   <TooltipTrigger>ℹ️</TooltipTrigger>
                   <TooltipContent>
